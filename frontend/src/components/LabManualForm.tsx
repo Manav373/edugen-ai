@@ -3,6 +3,7 @@ import { useReactToPrint } from 'react-to-print';
 import { Code, Download, Loader2, Copy, FileDown, FileText, BookmarkPlus, BookmarkCheck, Volume2, VolumeX, History, Terminal, Maximize2, X, Check, Laptop, ArrowUp } from 'lucide-react';
 import MarkdownRenderer from './ui/MarkdownRenderer';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 interface SavedAnswer {
     id: string;
@@ -33,14 +34,14 @@ const LabManualForm: React.FC = () => {
     const [processingFiles, setProcessingFiles] = useState(false);
     const [isBookmarked, setIsBookmarked] = useState(false);
     const [isSpeaking, setIsSpeaking] = useState(false);
-    const [answerTheme, setAnswerTheme] = useState<'dark' | 'light'>('dark');
+
     const [showHistory, setShowHistory] = useState(false);
     const [isEditorExpanded, setIsEditorExpanded] = useState(false);
     const [savedAnswers, setSavedAnswers] = useState<SavedAnswer[]>([]);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const componentRef = useRef<HTMLDivElement>(null);
     const speechSynthesis = window.speechSynthesis;
-    const navigate = useNavigate();
+
 
     useEffect(() => {
         const saved = localStorage.getItem('labAnswers');

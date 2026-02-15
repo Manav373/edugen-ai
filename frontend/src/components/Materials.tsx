@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BookOpen, Layers, Brain, Upload, Sparkles, Loader2, X, Check, Copy, Settings2, Image as ImageIcon, FileType, Maximize2, Minimize2, GripHorizontal, GripVertical } from 'lucide-react';
+import { BookOpen, Layers, Brain, Upload, Sparkles, Loader2, X, Check, Copy, Settings2, Image as ImageIcon, FileType, Maximize2, Minimize2 } from 'lucide-react';
 import MarkdownRenderer from './ui/MarkdownRenderer';
 import FlashcardDeck from './materials/FlashcardDeck';
 import QuizGame from './materials/QuizGame';

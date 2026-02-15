@@ -3,6 +3,7 @@ import { useReactToPrint } from 'react-to-print';
 import { FileText, Download, Loader2, Copy, FileDown, BookmarkPlus, BookmarkCheck, Volume2, VolumeX, History, Sparkles, Maximize2, X, Brain, Check, ArrowUp } from 'lucide-react';
 import MarkdownRenderer from './ui/MarkdownRenderer';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 interface SavedAnswer {
     id: string;
@@ -39,7 +40,7 @@ const AssignmentForm: React.FC = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const componentRef = useRef<HTMLDivElement>(null);
     const speechSynthesis = window.speechSynthesis;
-    const navigate = useNavigate();
+
 
     // Load saved answers from localStorage
     useEffect(() => {
