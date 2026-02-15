@@ -3,7 +3,7 @@ import { useReactToPrint } from 'react-to-print';
 import { Code, Download, Loader2, Copy, FileDown, FileText, BookmarkPlus, BookmarkCheck, Volume2, VolumeX, History, Terminal, Maximize2, X, Check, Laptop, ArrowUp } from 'lucide-react';
 import MarkdownRenderer from './ui/MarkdownRenderer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+
 
 interface SavedAnswer {
     id: string;
