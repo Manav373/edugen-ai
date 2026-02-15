@@ -58,6 +58,7 @@ const SignInPage: React.FC = () => {
                         path="/sign-in"
                         signUpUrl="/sign-up"
                         forceRedirectUrl="/chat"
+                        fallbackRedirectUrl="/chat"
                     />
                 </div>
 

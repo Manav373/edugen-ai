@@ -12,7 +12,7 @@ const hasValidClerkKey = PUBLISHABLE_KEY && PUBLISHABLE_KEY !== 'pk_test_your_ke
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     {hasValidClerkKey ? (
-      <ClerkProvider publishableKey={PUBLISHABLE_KEY!}>
+      <ClerkProvider publishableKey={PUBLISHABLE_KEY!} signInForceRedirectUrl="/chat" signUpForceRedirectUrl="/chat">
         <App />
       </ClerkProvider>
     ) : (
