@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import { FileText, Download, Loader2, Copy, FileDown, BookmarkPlus, BookmarkCheck, Volume2, VolumeX, Sun, Moon, History, Sparkles, Maximize2, X, Check, GraduationCap, ArrowUp } from 'lucide-react';
+import { FileText, Download, Loader2, Copy, FileDown, BookmarkPlus, BookmarkCheck, Volume2, VolumeX, History, Sparkles, Maximize2, X, Check, GraduationCap, ArrowUp } from 'lucide-react';
 import MarkdownRenderer from './ui/MarkdownRenderer';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -34,7 +34,6 @@ const StudentQuestionForm: React.FC = () => {
     const [processingFiles, setProcessingFiles] = useState(false);
     const [isBookmarked, setIsBookmarked] = useState(false);
     const [isSpeaking, setIsSpeaking] = useState(false);
-    const [isPrinting, setIsPrinting] = useState(false);
     // const [answerTheme, setAnswerTheme] = useState<'dark' | 'light'>('dark'); // Removed for forced dark mode
     const [showHistory, setShowHistory] = useState(false);
     const [isEditorExpanded, setIsEditorExpanded] = useState(false);
@@ -570,6 +569,12 @@ const StudentQuestionForm: React.FC = () => {
                     >
                         <div className="bg-gray-800/80 backdrop-blur-md border border-gray-700 rounded-t-2xl p-4 flex items-center justify-between shadow-lg z-10">
                             <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                                <button
+                                    onClick={() => mainContainerRef.current?.scrollTo({ top: 0, behavior: 'smooth' })}
+                                    className="lg:hidden p-1.5 hover:bg-gray-700/50 rounded-lg text-blue-400 transition-colors"
+                                >
+                                    <ArrowUp className="w-5 h-5" />
+                                </button>
                                 <Check className="w-5 h-5 text-purple-500" />
                                 Study Notes
                             </h3>

@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import { useNavigate } from 'react-router-dom';
-import { FileText, Download, Loader2, Copy, FileDown, BookmarkPlus, BookmarkCheck, Volume2, VolumeX, Sun, Moon, History, Sparkles, Maximize2, X, Brain, Check, GraduationCap, ArrowUp } from 'lucide-react';
+import { FileText, Download, Loader2, Copy, FileDown, BookmarkPlus, BookmarkCheck, Volume2, VolumeX, History, Sparkles, Maximize2, X, Brain, Check, ArrowUp } from 'lucide-react';
 import MarkdownRenderer from './ui/MarkdownRenderer';
 import { motion, AnimatePresence } from 'framer-motion';
 
