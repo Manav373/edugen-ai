@@ -18,7 +18,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className 
                 remarkPlugins={[remarkGfm]}
                 components={{
                     h1: ({ node, ...props }) => <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 pb-2 border-b border-gray-700 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent break-words" {...props} />,
-                    h2: ({ node, ...props }) => <h2 className="text-xl sm:text-2xl font-bold mt-6 sm:mt-8 mb-3 sm:mb-4 flex items-center gap-2 text-blue-400 break-words" {...props} />,
+                    h2: ({ node, ...props }) => <h2 className="text-xl sm:text-2xl font-bold mt-6 sm:mt-8 mb-3 sm:mb-4 text-blue-400 break-words" {...props} />,
                     h3: ({ node, ...props }) => <h3 className="text-lg sm:text-xl font-semibold mt-4 sm:mt-6 mb-2 sm:mb-3 text-purple-400 break-words" {...props} />,
                     ul: ({ node, ...props }) => <ul className="list-disc pl-6 space-y-2 my-4 text-gray-300" {...props} />,
                     ol: ({ node, ...props }) => <ol className="list-decimal pl-6 space-y-2 my-4 text-gray-300" {...props} />,

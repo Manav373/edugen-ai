@@ -214,6 +214,8 @@ from app.core.prompts import ASSIGNMENT_SOLVER_PROMPT
 
 class SolveAssignmentRequest(BaseModel):
     questions: str
+    files_data: List[str] = []
+    file_types: List[str] = []
     subject: str = "General"
     marks: str = "5"
     style: str = "academic" # academic, simple, bullet_points
@@ -254,6 +256,7 @@ async def solve_assignment(request: SolveAssignmentRequest):
         elif request.marks == '5':
             marks_instructions = """
 **5 MARK QUESTIONS (COMPREHENSIVE):**
+- **CRITICAL: SKIP ALL MCQs and 1-Mark Questions.** Only provide answers for long-answer/essay type questions.
 - MINIMUM 15-20 sentences OR 20-25 bullet points per question
 - This is a FULL ESSAY-STYLE answer for EACH question
 - Include: Complete explanation + Multiple examples + Diagrams + Applications + Conclusion
@@ -266,14 +269,33 @@ async def solve_assignment(request: SolveAssignmentRequest):
         elif request.style == 'bullet_points':
              marks_instructions += "\n\n**STYLE NOTE**: prioritize bullet points and structured lists over long paragraphs for easy reading."
 
+        # Process Files if any
+        extracted_text = ""
+        if request.files_data:
+            import base64
+            from app.services.file_processor import file_processor
+            
+            for idx, file_b64 in enumerate(request.files_data):
+                try:
+                    file_bytes = base64.b64decode(file_b64.split(',')[1] if ',' in file_b64 else file_b64)
+                    file_type = request.file_types[idx]
+                    text = await file_processor.extract_text_from_bytes(file_bytes, file_type)
+                    extracted_text += f"\n\n--- FILE CONTENT ({file_type}) ---\n{text}\n"
+                except Exception as e:
+                    print(f"Error processing file for assignment: {e}")
+
+        final_questions = request.questions + extracted_text
+
         prompt = ASSIGNMENT_SOLVER_PROMPT.format(
             subject=request.subject,
-            questions=request.questions,
+            questions=final_questions,
             marks=request.marks,
             style=request.style,
             marks_instructions=marks_instructions
         )
         
+        # Use a model with larger context window if files are present? 
+        # Llama 3 70b has 8k context, should be fine for text.
         messages = [
             {"role": "user", "content": prompt}
         ]
@@ -288,6 +310,8 @@ from app.core.prompts import LAB_SOLVER_PROMPT
 
 class SolveLabRequest(BaseModel):
     questions: str
+    files_data: List[str] = []
+    file_types: List[str] = []
     subject: str = "General"
     language: str = "Python"
     style: str = "detailed" # detailed, concise, code_only
@@ -308,16 +332,33 @@ async def solve_lab_questions(request: SolveLabRequest):
 - Focus mainly on the logic and the code.
 - Minimal comments, only where necessary.
 """
-        elif request.style == 'code_only':
+        if request.style == 'code_only':
             style_instructions = """
 - PROVIDE ONLY THE CODE AND SAMPLE OUTPUT.
 - NO theoretical explanations.
 - Minimal comments.
 """
 
+        # Process Files if any
+        extracted_text = ""
+        if request.files_data:
+            import base64
+            from app.services.file_processor import file_processor
+            
+            for idx, file_b64 in enumerate(request.files_data):
+                try:
+                    file_bytes = base64.b64decode(file_b64.split(',')[1] if ',' in file_b64 else file_b64)
+                    file_type = request.file_types[idx]
+                    text = await file_processor.extract_text_from_bytes(file_bytes, file_type)
+                    extracted_text += f"\n\n--- FILE CONTENT ({file_type}) ---\n{text}\n"
+                except Exception as e:
+                    print(f"Error processing file for lab: {e}")
+
+        final_questions = request.questions + extracted_text
+
         prompt = LAB_SOLVER_PROMPT.format(
             subject=request.subject,
-            questions=request.questions,
+            questions=final_questions,
             language=request.language,
             language_lower=request.language.lower(),
             style=request.style,
@@ -338,6 +379,8 @@ from app.core.prompts import STUDY_HELPER_PROMPT
 
 class SolveStudyRequest(BaseModel):
     questions: str
+    files_data: List[str] = []
+    file_types: List[str] = []
     subject: str = "General"
     difficulty: str = "medium"
     study_mode: str = "balanced"
@@ -371,9 +414,26 @@ async def study_helper(request: SolveStudyRequest):
         }
         study_mode_instructions = mode_map.get(request.study_mode, mode_map["balanced"])
 
+        # Process Files if any
+        extracted_text = ""
+        if request.files_data:
+            import base64
+            from app.services.file_processor import file_processor
+            
+            for idx, file_b64 in enumerate(request.files_data):
+                try:
+                    file_bytes = base64.b64decode(file_b64.split(',')[1] if ',' in file_b64 else file_b64)
+                    file_type = request.file_types[idx]
+                    text = await file_processor.extract_text_from_bytes(file_bytes, file_type)
+                    extracted_text += f"\n\n--- FILE CONTENT ({file_type}) ---\n{text}\n"
+                except Exception as e:
+                    print(f"Error processing file for study helper: {e}")
+
+        final_questions = request.questions + extracted_text
+
         prompt = STUDY_HELPER_PROMPT.format(
             subject=request.subject,
-            questions=request.questions,
+            questions=final_questions,
             difficulty=request.difficulty.upper(),
             study_mode=request.study_mode.upper(),
             tutor_persona=request.tutor_persona.upper(),

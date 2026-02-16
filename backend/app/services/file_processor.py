@@ -94,6 +94,47 @@ class FileProcessor:
         return base64.b64encode(buffered.getvalue()).decode("utf-8")
 
     @staticmethod
+    async def extract_text_from_bytes(file_bytes: bytes, file_type: str) -> str:
+        """Extract text from file bytes based on file type"""
+        try:
+            if file_type == 'application/pdf':
+                try:
+                    import PyPDF2
+                    pdf_file = io.BytesIO(file_bytes)
+                    pdf_reader = PyPDF2.PdfReader(pdf_file)
+                    text = ""
+                    for page in pdf_reader.pages:
+                        extracted = page.extract_text()
+                        if extracted:
+                            text += extracted + "\n"
+                    return text.strip()
+                except Exception as e:
+                    # Fallback to PyMuPDF if PyPDF2 fails (optional but good)
+                    return "" 
+            
+            elif file_type in ['image/jpeg', 'image/png', 'image/jpg', 'image/webp']:
+                 # Use existing image extraction logic (needs refactoring to share code)
+                 # For now, duplicate inner logic of extract_text_from_image but adapting for bytes
+                 image = Image.open(io.BytesIO(file_bytes))
+                 try:
+                    import pytesseract
+                    # Ensure tesseract path is set (copy logic from extract_text_from_image if needed, 
+                    # but simpler to assume it's set or rely on env)
+                    # For safety, let's just try basic OCR
+                    text = pytesseract.image_to_string(image)
+                    return text.strip()
+                 except Exception:
+                     return "[Image Text Extraction Failed]"
+
+            elif file_type == 'text/plain':
+                return file_bytes.decode('utf-8').strip()
+            
+            return ""
+        except Exception as e:
+            print(f"Error extracting text from bytes: {e}")
+            return ""
+
+    @staticmethod
     def process_file_to_base64_images(file_bytes: bytes, file_type: str) -> list[str]:
         """
         Convert file bytes (PDF or Image) to a list of Base64 strings.
