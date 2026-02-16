@@ -405,7 +405,7 @@ const AssignmentForm: React.FC = () => {
                         {/* Question Input */}
                         <div className="relative">
                             <label className="text-sm font-semibold text-gray-300 mb-2 block">
-                                Your Questions <span className="text-red-500">*</span>
+                                Your Questions
                             </label>
                             <div className="relative">
                                 <textarea
@@ -413,7 +413,6 @@ const AssignmentForm: React.FC = () => {
                                     onChange={(e) => setQuestions(e.target.value)}
                                     className="w-full h-32 sm:h-48 bg-gray-900/50 border border-gray-600 rounded-xl p-3 sm:p-4 text-white resize-none focus:ring-2 focus:ring-blue-500 outline-none transition-all"
                                     placeholder="Paste your questions here..."
-                                    required
                                 />
                                 <button
                                     type="button"

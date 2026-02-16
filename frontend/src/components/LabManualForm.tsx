@@ -408,7 +408,7 @@ const LabManualForm: React.FC = () => {
                         {/* Question Input */}
                         <div className="relative">
                             <label className="text-sm font-semibold text-gray-300 mb-2 block">
-                                Lab Questions / Problem Statement <span className="text-red-500">*</span>
+                                Lab Questions / Problem Statement
                             </label>
                             <div className="relative">
                                 <textarea
@@ -416,7 +416,6 @@ const LabManualForm: React.FC = () => {
                                     onChange={(e) => setQuestions(e.target.value)}
                                     className="w-full h-48 bg-gray-900/50 border border-gray-600 rounded-xl p-4 text-green-400 font-mono resize-none focus:ring-2 focus:ring-green-500 outline-none transition-all placeholder-gray-600"
                                     placeholder="// Paste your problem statement or code here..."
-                                    required
                                 />
                                 <button
                                     type="button"

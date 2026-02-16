@@ -420,7 +420,7 @@ const StudentQuestionForm: React.FC = () => {
                         {/* Question Input */}
                         <div className="relative">
                             <label className="text-sm font-semibold text-gray-300 mb-2 block">
-                                Your Questions / Notes <span className="text-red-500">*</span>
+                                Your Questions / Notes
                             </label>
                             <div className="relative">
                                 <textarea
@@ -428,7 +428,6 @@ const StudentQuestionForm: React.FC = () => {
                                     onChange={(e) => setQuestions(e.target.value)}
                                     className="w-full h-32 sm:h-40 md:h-48 bg-gray-900/50 border border-gray-600 rounded-xl p-3 sm:p-4 text-purple-200 font-sans resize-none focus:ring-2 focus:ring-purple-500 outline-none transition-all placeholder-gray-600"
                                     placeholder="e.g. Explain Quantum Physics like I'm 5..."
-                                    required
                                 />
                                 <button
                                     type="button"
