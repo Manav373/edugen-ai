@@ -566,7 +566,7 @@ const LabManualForm: React.FC = () => {
 
                         <div
                             ref={componentRef}
-                            className="flex-1 lg:overflow-y-auto p-4 sm:p-8 rounded-b-2xl shadow-2xl custom-scrollbar print:overflow-visible print:h-auto print:bg-white print:text-black bg-gray-900 text-gray-300"
+                            className="flex-1 lg:overflow-y-auto p-4 sm:p-6 md:p-8 rounded-b-2xl shadow-2xl custom-scrollbar print:overflow-visible print:h-auto print:bg-white print:text-black bg-gray-900 text-gray-300"
                         >
                             <div className="prose max-w-none print:prose-neutral prose-invert">
                                 <style type="text/css" media="print">

@@ -578,12 +578,8 @@ const StudentQuestionForm: React.FC = () => {
                                 Study Notes
                             </h3>
                             <div className="flex gap-2">
-
                                 <button onClick={handleBookmark} className="p-2 hover:bg-gray-700/50 rounded-lg text-gray-400 hover:text-yellow-400 transition-colors">
                                     {isBookmarked ? <BookmarkCheck className="w-5 h-5" /> : <BookmarkPlus className="w-5 h-5" />}
-                                </button>
-                                <button onClick={handleTextToSpeech} className="p-2 hover:bg-gray-700/50 rounded-lg text-gray-400 hover:text-blue-400 transition-colors">
-                                    {isSpeaking ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
                                 </button>
                                 <button onClick={handleTextToSpeech} className="p-2 hover:bg-gray-700/50 rounded-lg text-gray-400 hover:text-blue-400 transition-colors">
                                     {isSpeaking ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
@@ -594,7 +590,7 @@ const StudentQuestionForm: React.FC = () => {
 
                         <div
                             ref={componentRef}
-                            className="flex-1 overflow-y-auto p-8 rounded-b-2xl shadow-2xl custom-scrollbar print:overflow-visible print:h-auto print:bg-white print:text-black bg-gray-900 text-gray-300"
+                            className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 rounded-b-2xl shadow-2xl custom-scrollbar print:overflow-visible print:h-auto print:bg-white print:text-black bg-gray-900 text-gray-300"
                         >
                             <div className="prose max-w-none print:prose-neutral prose-invert">
                                 <style type="text/css" media="print">
