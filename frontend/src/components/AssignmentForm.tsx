@@ -224,7 +224,7 @@ const AssignmentForm: React.FC = () => {
         setIsBookmarked(false);
 
         try {
-            const response = await fetch('http://localhost:8000/api/v1/tools/solve-assignment', {
+            const response = await fetch('/api/v1/tools/solve-assignment', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

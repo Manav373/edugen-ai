@@ -241,7 +241,7 @@ const StudentQuestionForm: React.FC = () => {
         setIsBookmarked(false);
 
         try {
-            const response = await fetch('http://localhost:8000/api/v1/tools/study-helper', {
+            const response = await fetch('/api/v1/tools/study-helper', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

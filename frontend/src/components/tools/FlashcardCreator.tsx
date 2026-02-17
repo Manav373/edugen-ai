@@ -19,7 +19,7 @@ const FlashcardCreator = () => {
 
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:8000/api/v1/tools/generate-flashcards', {
+            const response = await fetch('/api/v1/tools/generate-flashcards', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ content, num_cards: 10 })

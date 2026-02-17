@@ -24,7 +24,7 @@ const QuizGenerator = () => {
 
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:8000/api/v1/tools/generate-quiz', {
+            const response = await fetch('/api/v1/tools/generate-quiz', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ content, num_questions: 5 })

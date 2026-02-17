@@ -231,7 +231,7 @@ const LabManualForm: React.FC = () => {
 
         try {
             const actualLanguage = language === 'Custom' ? customLanguage : language;
-            const response = await fetch('http://localhost:8000/api/v1/tools/solve-lab-questions', {
+            const response = await fetch('/api/v1/tools/solve-lab-questions', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

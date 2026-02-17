@@ -108,7 +108,7 @@ const Materials: React.FC = () => {
 
         try {
             if (type === 'summary') {
-                const res = await fetch('http://localhost:8000/api/v1/tools/summarize', {
+                const res = await fetch('/api/v1/tools/summarize', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -122,7 +122,7 @@ const Materials: React.FC = () => {
                 if (data.summary) setSummary(data.summary);
             }
             else if (type === 'flashcards') {
-                const res = await fetch('http://localhost:8000/api/v1/tools/generate-flashcards', {
+                const res = await fetch('/api/v1/tools/generate-flashcards', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -136,7 +136,7 @@ const Materials: React.FC = () => {
                 if (data.flashcards) setFlashcards(data.flashcards);
             }
             else if (type === 'quiz') {
-                const res = await fetch('http://localhost:8000/api/v1/tools/generate-quiz', {
+                const res = await fetch('/api/v1/tools/generate-quiz', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({

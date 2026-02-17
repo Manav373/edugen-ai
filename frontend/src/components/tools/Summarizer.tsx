@@ -15,7 +15,7 @@ const Summarizer = () => {
 
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:8000/api/v1/tools/summarize', {
+            const response = await fetch('/api/v1/tools/summarize', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ content, mode })
